@@ -10,7 +10,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<twitter4j.version>4.0.7</twitter4j.version>
-		<log4j.version>2.12.1</log4j.version>
+		<lucene.version>3.0.3</lucene.version>
 	</properties>
 
 	<dependencies>
@@ -27,10 +27,11 @@
 			<version>${twitter4j.version}</version>
 		</dependency>
 
+		<!-- Apache Lucene Stemming library -->
 		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>${log4j.version}</version>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-snowball</artifactId>
+			<version>${lucene.version}</version>
 		</dependency>
 
 	</dependencies>

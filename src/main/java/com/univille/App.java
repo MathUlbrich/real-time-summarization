@@ -23,7 +23,7 @@ public class App {
 		// Realiza o filtro de acordo com os tópicos escolhidos
 		stream.filter(new FilterQuery(topics()).language("pt"));
 		
-		// Aguarda por 1 minuto até fechar a conexão
+		// Aguarda por 30 minutos até fechar a conexão
 		sleep(30);
 
 		// Fecha a stream API
@@ -33,7 +33,7 @@ public class App {
 	
 	private static String[] topics() {
 		return new String[] { 
-			"bolsonaro"
+			"noronha"
 		};
 	}
 	

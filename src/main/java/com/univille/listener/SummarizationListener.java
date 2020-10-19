@@ -1,44 +1,47 @@
 package com.univille.listener;
 
 import com.univille.method.SummarizationMethod;
+import com.univille.model.MultiDocument;
+import com.univille.normalization.Normalizer;
+import com.univille.normalization.filters.LowercaseFilter;
+import com.univille.normalization.filters.SpecialCharacterFilter;
+import com.univille.normalization.filters.StemmingFilter;
+import com.univille.normalization.filters.StopwordFilter;
+import com.univille.storage.FileSummaryStorage;
+import com.univille.storage.SummaryStorage;
 
-import twitter4j.StallWarning;
 import twitter4j.Status;
-import twitter4j.StatusDeletionNotice;
-import twitter4j.StatusListener;
+import twitter4j.StatusAdapter;
 
-public class SummarizationListener implements StatusListener {
+public class SummarizationListener extends StatusAdapter {
 
-	public void onException(Exception ex) {
-		// TODO Implementar
-	}
-
+	@Override
 	public void onStatus(Status status) {
+		
 		if (shouldIgnore(status)) {
 			return;
 		}
 		
-		for (SummarizationMethod method : SummarizationMethod.values()) {
-			method.summary(status.getText());
-		}
+		Normalizer normalizer = new Normalizer();
+		normalizer.addFilter(new LowercaseFilter());
+		normalizer.addFilter(new StopwordFilter());
+		normalizer.addFilter(new StemmingFilter());
+		normalizer.addFilter(new SpecialCharacterFilter());
+		
+		System.out.println("Normalized => " + normalizer.normalize(status.getText()));
+		
+//		MultiDocument doc = new MultiDocument();
+//		doc.add(status.getText());
+		
+//		SummaryStorage storage = new FileSummaryStorage();
+//		
+//		for (SummarizationMethod method : SummarizationMethod.values()) {
+//			String summarized = method.algorithm().summarize(doc);
+//			storage.store(summarized);
+//		}
+		
 	}
 
-	public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
-		// Método não implementado
-	}
-
-	public void onTrackLimitationNotice(int numberOfLimitedStatuses) {
-		// Método não implementado
-	}
-
-	public void onScrubGeo(long userId, long upToStatusId) {
-		// Método não implementado
-	}
-
-	public void onStallWarning(StallWarning warning) {
-		// Método não implementado
-	}
-	
 	private boolean shouldIgnore(Status status) {
 		return status.isRetweet();
 	}
