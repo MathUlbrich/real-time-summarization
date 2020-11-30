@@ -12,6 +12,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<twitter4j.version>4.0.7</twitter4j.version>
 		<lucene.version>3.0.3</lucene.version>
+		<commonstext.version>1.9</commonstext.version>
 	</properties>
 
 	<dependencies>
@@ -26,6 +27,13 @@
 			<groupId>org.twitter4j</groupId>
 			<artifactId>twitter4j-stream</artifactId>
 			<version>${twitter4j.version}</version>
+		</dependency>
+
+		<!-- Library with cosine similarity algorithm -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>${commonstext.version}</version>
 		</dependency>
 
 		<!-- Apache Lucene Stemming library -->
