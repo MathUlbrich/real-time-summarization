@@ -32,7 +32,7 @@ public class SubEventDetector {
 		if (session == null) {
 			setSession(UUID.randomUUID().toString());
 			session = getCurrentSession();
-			System.out.println("Iniciando janela de sub-events para a sessão: " + session);
+			System.out.println("Iniciando janela de sub-eventos para a sessÃ£o: " + session);
 			
 			TIMER.schedule(new TimerTask() {
 				
@@ -44,7 +44,7 @@ public class SubEventDetector {
 					
 					boolean shouldSummarize = false;
 					
-					System.out.println("Janela de identificação de sub-eventos finalizada... (" + innerSession + ")");
+					System.out.println("Janela de identificaÃ§Ã£o de sub-eventos finalizada... (" + innerSession + ")");
 					
 					if (qtTweets > (mean + (mean * PERCENT_RATE_TO_NEW_SUBEVENT))) {
 						
@@ -60,7 +60,7 @@ public class SubEventDetector {
 					setSession(null);
 					
 					if (shouldSummarize) {
-						System.out.println("O sumário é => " + SummarizationMethod.HYBRID_TFIDF.algorithm().summarize(DocumentRepository.get(innerSession)));
+						System.out.println("O sumÃ¡rio Ã© => " + SummarizationMethod.HYBRID_TFIDF.algorithm().summarize(DocumentRepository.get(innerSession)));
 					}
 					
 				}

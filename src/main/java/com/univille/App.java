@@ -15,25 +15,25 @@ public class App {
 		
 		try (Scanner scanner = new Scanner(System.in)) {
 			
-			System.out.print("Informe os tópicos a serem escutados (separados por espaço): ");
+			System.out.print("Informe os tÃ³picos a serem escutados (separados por espaÃ§o): ");
 			
 			String[] topics = scanner.nextLine().split(" ");
 			
-			System.out.println("Ouvindo a API do twitter para os seguintes tópicos: " + Arrays.asList(topics));
+			System.out.println("Ouvindo a API do twitter para os seguintes tÃ³picos: " + Arrays.asList(topics));
 		
-			// Recupera a instância da Stream API do Twitter
+			// Recupera a instï¿½ncia da Stream API do Twitter
 			TwitterStream stream = TwitterStreamFactory.getSingleton();
 			
-			// Adiciona o Listener para monitorar o ciclo de vida da conexão 
+			// Adiciona o Listener para monitorar o ciclo de vida da conexï¿½o 
 			//stream.addConnectionLifeCycleListener(new APIConnectionListener());
 			
-			// Adiciona o Listener da sumarização
+			// Adiciona o Listener da sumarizaï¿½ï¿½o
 			stream.addListener(new TweetRateListener());
 			
-			// Realiza o filtro de acordo com os tópicos escolhidos
+			// Realiza o filtro de acordo com os tï¿½picos escolhidos
 			stream.filter(new FilterQuery(topics).language("pt"));
 			
-			// Aguarda por 30 minutos até fechar a conexão
+			// Aguarda por 30 minutos atï¿½ fechar a conexï¿½o
 			sleep(30);
 	
 			// Fecha a stream API
